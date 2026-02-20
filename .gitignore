@@ -1,0 +1,11 @@
+# dependencies
+chessboard/node_modules/
+chessboard/.pnp
+
+# next.js
+/chessboard/.next/
+/chessboard/out/
+
+# typescript
+chessboard/*.tsbuildinfo
+chessboard/next-env.d.ts
