@@ -1,8 +1,63 @@
 "use client";
 
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { GameStatus } from "@/lib/types";
 
-export default function AEye() {
+interface AEyeProps {
+  isThinking?: boolean;
+  gameStatus?: GameStatus;
+}
+
+export default function AEye({
+  isThinking = false,
+  gameStatus = "",
+}: AEyeProps) {
+  const [pupilPos, setPupilPos] = useState({ x: 0, y: 0 });
+  const [isBlinking, setIsBlinking] = useState(false);
+  const containerRef = useRef<HTMLElement>(null);
+
+  // Mousetrack
+  useEffect(() => {
+    const handleMouseMovements = (e: MouseEvent) => {
+      if (!containerRef.current || isThinking || gameStatus) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+
+      const maxMove = 12;
+
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      const maxDistance = Math.min(window.innerWidth, window.innerHeight) / 2;
+
+      const factor = Math.min(distance / maxDistance, 1);
+      const angle = Math.atan2(deltaY, deltaX);
+
+      setPupilPos({
+        x: Math.cos(angle) * maxMove * factor,
+        y: Math.sin(angle) * maxMove * factor,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMovements);
+
+    // Random blinking effect
+    const blinkInterval = setInterval(() => {
+      if (Math.random() > 0.85) {
+        setIsBlinking(true);
+        setTimeout(() => setIsBlinking(false), 150);
+      }
+    }, 4000);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMovements);
+      clearInterval(blinkInterval);
+    };
+  }, [isThinking, gameStatus]);
+
   return (
     <div className="w-full py-6 flex flex-col items-center justify-center relative z-20">
       {/* Text box */}
