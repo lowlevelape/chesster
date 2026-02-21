@@ -24,14 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <div className="bg-[#946263] absolute -top-24 -z-10 right-44 h-125 w-125 rouded-full blur-[10rem] sm:w-275" />
-      <div
-        className="bg-[#676394] absolute -top-4 -z-10 -left-140 h-125 w-125 rouded-full blur-[10rem] sm:w-275
-        md:-left-132 lg:-left-112 xl:-left-60 2xl:-left-20"
-      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-50/90 relative pt-28 sm:pt-36`}
       >
+        <div className="bg-[#946263] absolute -top-24 -z-10 right-44 h-125 w-125 rouded-full blur-[10rem] sm:w-275" />
+        <div
+          className="bg-[#676394] absolute -top-4 -z-10 -left-140 h-125 w-125 rouded-full blur-[10rem] sm:w-275
+          md:-left-132 lg:-left-112 xl:-left-60 2xl:-left-20"
+        />
         {children}
       </body>
     </html>
