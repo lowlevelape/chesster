@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ChessGameContextProvider from "@/context/chess-game-context";
-import BoardContextProvider from "@/context/board-context";
+import BoardContextProvider from "@/context/chess-game-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

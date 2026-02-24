@@ -3,11 +3,10 @@
 import { Chessboard } from "react-chessboard";
 import { useCallback, useState } from "react";
 import { customPieces } from "./customPieces";
-import { useChessGameContext, useBoardContext } from "@/hooks/useContext";
+import { useChessGameContext } from "@/hooks/useContext";
 
 export default function Board() {
-  const { setGameStatus, setThinking } = useChessGameContext();
-  const { game } = useBoardContext();
+  const { setGameStatus, setThinking, game } = useChessGameContext();
   const chessboardOptions = {
     id: "basicBoard",
     position: game.fen(),
