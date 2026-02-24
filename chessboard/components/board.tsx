@@ -3,12 +3,19 @@
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 import { useState } from "react";
+import { customPieces } from "./customPieces";
 
 export default function Board() {
   const [game, setGame] = useState(new Chess());
   const chessboardOptions = {
     id: "basicBoard",
     position: game.fen(),
+    darkSquareStyle: { backgroundColor: "#334155" },
+    lightSquareStyle: { backgroundColor: "#94a3b8" },
+    animationDurationInMs: 300,
+    pieces: customPieces,
+    draggingPieceGhostStyle: { opacity: 0 },
+    draggingPieceStyle: { transform: "scale(1.2)" },
   };
   return (
     <section className="relative transition-all duration-500">
