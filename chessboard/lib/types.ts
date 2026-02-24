@@ -1,16 +1,21 @@
+import { title } from "framer-motion/m";
+
 const gameState = [
   {
-    state: "win",
+    title: "",
+    message: "",
+    type: "win",
   },
   {
-    state: "loss",
+    title: "",
+    message: "",
+    type: "loss",
   },
   {
-    state: "draw",
-  },
-  {
-    state: "",
+    title: "",
+    message: "",
+    type: "draw",
   },
 ];
 
-export type GameStatus = (typeof gameState)[number]["state"];
+export type GameStatus = (typeof gameState)[number];

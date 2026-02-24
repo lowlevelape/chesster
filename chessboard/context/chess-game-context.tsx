@@ -16,7 +16,7 @@ type ChessGameContextProviderProps = {
 type ChessGameContextType = {
   containerRef: React.RefObject<HTMLDivElement | null>;
   setThinking: React.Dispatch<React.SetStateAction<boolean>>;
-  setGameStatus: React.Dispatch<React.SetStateAction<GameStatus>>;
+  setGameStatus: React.Dispatch<React.SetStateAction<GameStatus | null>>;
 };
 
 export const ChessGameContext = createContext<ChessGameContextType | null>(
@@ -28,7 +28,7 @@ export default function ChessGameContextProvider({
 }: ChessGameContextProviderProps) {
   const [thinking, setThinking] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [gameStatus, setGameStatus] = useState<GameStatus>("");
+  const [gameStatus, setGameStatus] = useState<GameStatus | null>(null);
 
   return (
     <ChessGameContext.Provider
