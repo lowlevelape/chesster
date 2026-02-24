@@ -2,11 +2,10 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { GameStatus } from "@/lib/types";
 
 interface AEyeProps {
   isThinking?: boolean;
-  gameStatus?: GameStatus;
+  gameStatus?: string;
 }
 
 export default function AEye({

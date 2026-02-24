@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ChessGameContextProvider from "@/context/chess-game-context";
+import BoardContextProvider from "@/context/board-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,9 @@ export default function RootLayout({
           className="bg-[#676394] absolute -top-4 -z-10 -left-140 h-125 w-125 rouded-full blur-[10rem] sm:w-275
           md:-left-132 lg:-left-112 xl:-left-60 2xl:-left-20"
         />
-        <ChessGameContextProvider>{children}</ChessGameContextProvider>
+        <ChessGameContextProvider>
+          <BoardContextProvider>{children}</BoardContextProvider>
+        </ChessGameContextProvider>
       </body>
     </html>
   );

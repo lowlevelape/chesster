@@ -1,40 +1,13 @@
 "use client";
 
 import { Chessboard } from "react-chessboard";
-import { Chess } from "chess.js";
 import { useCallback, useState } from "react";
 import { customPieces } from "./customPieces";
-import { useChessGameContext } from "@/context/chess-game-context";
+import { useChessGameContext, useBoardContext } from "@/hooks/useContext";
 
 export default function Board() {
-  const [game, setGame] = useState(new Chess());
   const { setGameStatus, setThinking } = useChessGameContext();
-
-  const checkGameOver = useCallback(() => {
-    if (game.in_checkmate()) {
-      const winner = game.turn() === "w" ? "Black" : "White";
-      const playerWon = winner === "White";
-      setGameStatus({
-        title: playerWon ? "Victory!" : "Defeat",
-        message: playerWon
-          ? "You checkmated the bot."
-          : "The bot checkmated you.",
-        type: playerWon ? "win" : "loss",
-      });
-    } else if (
-      game.in_draw() ||
-      game.in_stalemate() ||
-      game.in_threefold_repetition() ||
-      game.insufficient_material()
-    ) {
-      setGameStatus({
-        title: "Draw",
-        message: "The game ended in a draw.",
-        type: "draw",
-      });
-    } else setGameStatus(null);
-  }, [game]);
-
+  const { game } = useBoardContext();
   const chessboardOptions = {
     id: "basicBoard",
     position: game.fen(),
