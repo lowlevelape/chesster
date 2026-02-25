@@ -6,9 +6,7 @@ export default function Home() {
     <main className="flex flex-col items-center px-4">
       <div className="min-h-screen  text-slate-100 font-sans">
         <AEye />
-        <div className="flex-1 flex flex-col items-center justify-start py-8 px-4 relative">
-          <Board />
-        </div>
+        <Board />
       </div>
     </main>
   );
