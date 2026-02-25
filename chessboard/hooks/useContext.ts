@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext } from "react";
 import { ChessGameContext } from "@/context/chess-game-context";
 
