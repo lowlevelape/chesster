@@ -52,7 +52,6 @@ export default function Game() {
     setThinking(true);
 
     try {
-      // 1. Fetch move using the current FEN
       const response = await fetch("http://localhost:4000/move", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,7 +61,6 @@ export default function Game() {
       const data = await response.json();
 
       if (data.bestmove) {
-        // 2. IMPORTANT: Use the functional update to ensure no race conditions
         setGame((currentGame) => {
           const gameCopy = new Chess(currentGame.fen());
           const moveResult = gameCopy.move({
@@ -72,7 +70,6 @@ export default function Game() {
           });
 
           if (moveResult) {
-            // Check game over on the successfully moved copy
             checkGameOver(gameCopy);
             return gameCopy;
           }
@@ -86,10 +83,9 @@ export default function Game() {
     } finally {
       setThinking(false);
     }
-  }, [game, thinking, checkGameOver]); // game must stay here to update FEN for the fetch
+  }, [game, thinking, checkGameOver]);
 
   useEffect(() => {
-    // Ensure we only trigger if it's black's turn AND we aren't already processing
     const isBlackTurn = game.turn() === "b";
 
     if (isBlackTurn && !gameStatus && !thinking) {
