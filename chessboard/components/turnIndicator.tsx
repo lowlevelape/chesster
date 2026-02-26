@@ -1,9 +1,12 @@
 "use client";
 
-import { useChessGameContext } from "@/hooks/useContext";
+import { ChessInstance } from "chess.js";
 
-export default function TurnIndicator() {
-  const { game } = useChessGameContext();
+interface TurnIndicatorProps {
+  game: ChessInstance;
+}
+
+export default function TurnIndicator({ game }: TurnIndicatorProps) {
   return (
     <section className="flex-1 flex flex-col items-center justify-start px-4 relative">
       <div className="mt-8 grid grid-cols-2 gap-4 w-full max-w-150">

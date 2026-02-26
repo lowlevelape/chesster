@@ -1,75 +1,30 @@
 "use client";
 
 import { Chessboard, PieceDropHandlerArgs } from "react-chessboard";
-import { useCallback, useEffect } from "react";
 import { customPieces } from "./customPieces";
-import { useChessGameContext } from "@/hooks/useContext";
-import { Chess } from "chess.js";
 import { motion, AnimatePresence } from "framer-motion";
 import { RefreshCcw, Trophy, AlertTriangle } from "lucide-react";
+import { ChessInstance } from "chess.js";
 
-export default function Board() {
-  const { thinking, setThinking, game, setGame, gameStatus, setGameStatus } =
-    useChessGameContext();
+interface BoardProps {
+  game: ChessInstance;
+  onDrop: ({ sourceSquare, targetSquare }: PieceDropHandlerArgs) => boolean;
+  thinking: boolean;
+  gameStatus: {
+    title: string;
+    message: string;
+    type: "win" | "loss" | "draw";
+  } | null;
+  resetGame: () => void;
+}
 
-  const checkGameOver = useCallback(() => {
-    if (game.in_checkmate()) {
-      const winner = game.turn() === "w" ? "Black" : "White";
-      const playerWon = winner === "White";
-      setGameStatus({
-        title: playerWon ? "Victory!" : "Defeat",
-        message: playerWon
-          ? "You checkmated the bot."
-          : "The bot checkmated you.",
-        type: playerWon ? "win" : "loss",
-      });
-    } else if (
-      game.in_draw() ||
-      game.in_stalemate() ||
-      game.in_threefold_repetition() ||
-      game.insufficient_material()
-    ) {
-      setGameStatus({
-        title: "Draw",
-        message: "The game ended in a draw.",
-        type: "draw",
-      });
-    } else setGameStatus(null);
-  }, [game]);
-
-  const makeBotMove = useCallback(() => {
-    setThinking(true);
-
-    // Simulate random thinking delay
-    setTimeout(() => {
-      const moves = game.moves();
-
-      if (game.game_over() || game.in_draw() || moves.length === 0) {
-        setThinking(false);
-        return;
-      }
-    });
-  }, [game]);
-
-  useEffect(() => {
-    if (game.turn() === "b" && !gameStatus) makeBotMove();
-  }, [game, gameStatus, makeBotMove]);
-
-  const onDrop = ({
-    sourceSquare,
-    targetSquare,
-    piece,
-  }: PieceDropHandlerArgs) => {
-    if (thinking || gameStatus || game.turn() !== "w") return false;
-    return true;
-  };
-
-  const resetGame = () => {
-    const newGame = new Chess();
-    setGame(newGame);
-    setGameStatus(null);
-    setThinking(false);
-  };
+export default function Board({
+  game,
+  onDrop,
+  thinking,
+  gameStatus,
+  resetGame,
+}: BoardProps) {
   const chessboardOptions = {
     id: "basicBoard",
     position: game.fen(),
@@ -80,7 +35,7 @@ export default function Board() {
     pieces: customPieces,
     draggingPieceGhostStyle: { opacity: 0 },
     draggingPieceStyle: { transform: "scale(1.2)" },
-    allowDragging: !setThinking && !setGameStatus && game.turn() === "w",
+    allowDragging: !thinking && !gameStatus && game.turn() === "w",
   };
 
   return (
@@ -90,8 +45,8 @@ export default function Board() {
         {gameStatus && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-slate-900/95
-            backdrop-blur-xl border border-slate-700 p-8 rounded-2xl shadow-2xl flex flex-col items-center gap-4
-            text-center max-w-sm w-full"
+              backdrop-blur-xl border border-slate-700 p-8 rounded-2xl shadow-2xl flex flex-col items-center gap-4
+              text-center max-w-sm w-full"
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
