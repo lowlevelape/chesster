@@ -85,6 +85,7 @@ export default function Board() {
 
   return (
     <section className="flex-1 flex flex-col items-center justify-start pt-8 px-4 relative">
+      {/* Game status */}
       <AnimatePresence>
         {gameStatus && (
           <motion.div
@@ -119,12 +120,13 @@ export default function Board() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Chessboard */}
       <div
         className={`relative transition-all duration-500 ${gameStatus ? "blur-sm grayscale opacity-50" : ""}`}
       >
         <div
           className={
-            "rounded-lg overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-slate-700/50 w-95 sm:w-190"
+            "rounded-lg overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-slate-700/50 w-95 sm:w-150"
           }
         >
           <Chessboard options={chessboardOptions} />

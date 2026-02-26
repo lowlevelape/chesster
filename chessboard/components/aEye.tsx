@@ -71,7 +71,7 @@ export default function AEye({
   }, [isThinking, gameStatus]);
 
   return (
-    <div className="w-full py-6 flex flex-col items-center justify-center relative z-20">
+    <div className="w-full pb-6 flex flex-col items-center justify-center relative z-20">
       {/* Text box */}
       <div className="absolute top-4 left-6 flex items-center gap-2">
         <div
