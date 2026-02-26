@@ -2,6 +2,8 @@
 chessboard/node_modules/
 chessboard/.pnp
 
+engine/node_modules/
+
 # next.js
 /chessboard/.next/
 /chessboard/out/

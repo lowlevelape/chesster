@@ -1,0 +1,24 @@
+{
+  "name": "engine",
+  "version": "1.0.0",
+  "description": "Dedicated chess engine server",
+  "keywords": [
+    "Express",
+    "Nodejs"
+  ],
+  "license": "MIT",
+  "author": "lowlevelape",
+  "type": "module",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6"
+  }
+}
