@@ -50,12 +50,12 @@ cd chesster
 ```
 docker compose up
 
-# if you want to  run it as a backgroun process
+# run as a background process
 docker compose up -d
 ```
 
 ## Usage <a name = "usage"></a>
-Open your preferred browser, and visit `localhost:8006` to play the game.
+Open your preferred browser, and visit `localhost:3000` to play the game.
 
 ## Known Issues <a name = "issues"></a>
 - No response sent to engine server when on mobile.
