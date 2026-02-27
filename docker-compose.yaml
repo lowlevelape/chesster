@@ -1,0 +1,13 @@
+version: "1.0"
+services:
+  frontend:
+    build: ./chessboard
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+
+  backend:
+    build: ./engine
+    ports:
+      - "4000:4000"
