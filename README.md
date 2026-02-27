@@ -41,7 +41,7 @@ First, you'll need nodejs installed on your system. See [Node](https://nodejs.or
 
 ```
 git clone https://github.com/lowlevelape/chesster.git
-cd chesster-main
+cd chesster
 ```
 
 2. Install npm packages:
