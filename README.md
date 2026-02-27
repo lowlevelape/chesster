@@ -57,8 +57,6 @@ docker compose up -d
 ## Usage <a name = "usage"></a>
 Open your preferred browser, and visit `localhost:8006` to play the game.
 
-Note: You'll have to manually terminate the node-server process if you want to stop it as it runs as a background process.
-
 ## Known Issues <a name = "issues"></a>
 - No response sent to engine server when on mobile.
 
