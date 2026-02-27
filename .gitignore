@@ -11,3 +11,6 @@ engine/node_modules/
 # typescript
 chessboard/*.tsbuildinfo
 chessboard/next-env.d.ts
+
+# misc
+misc
