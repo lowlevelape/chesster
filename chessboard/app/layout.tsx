@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NeuraChess",
+  title: "Chesster",
   description: "A smart chess",
 };
 
