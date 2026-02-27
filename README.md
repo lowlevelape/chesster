@@ -23,7 +23,9 @@
 ## Table of Contents
 - [About](#about)
 - [Getting Started](#getting_started)
+- [Usage](#usage)
 - [Contributing](#contrib)
+- [Known Issues](#issues)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
@@ -31,33 +33,34 @@
 Chesster is my very first personal project that I want to showcase for users to try out themselves. If you look at the code structure it's a bit messy and ugly as I am still learning web development while making this project, and I'll probably  continue on improving it the along the way.
 
 ## Getting Started <a name = "getting_started"></a>
-I haven't had docker setup yet,  so you'll have to run them manually instead...
-
 ### Prerequisites
-First, you'll need nodejs installed on your system. See [Node](https://nodejs.org) for setting up nodejs.
+First, you'll need docker installed on your system. See [Docker](https://docs.docker.com/get-started/) for the documentation on how to install it.
 
 ### Installing
-1. Clone this repo to your device and change directory to the cloned repo:
+1. Clone this repository:
 
 ```
+# clone the repo
 git clone https://github.com/lowlevelape/chesster.git
 cd chesster
 ```
 
-2. Install npm packages:
+2. Run the docker compose file
 
 ```
-npm install --prefix ./chessboard && npm install --prefix ./engine
+docker compose up
+
+# if you want to  run it as a backgroun process
+docker compose up -d
 ```
 
-## Running the game <a name = "tests"></a>
-1. Now that you've installed the required npm packages all you have to do is run:
-
-```
-npm run dev --prefix ./chessboard & (cd engine && node server.ts)
-```
+## Usage <a name = "usage"></a>
+Open your preferred browser, and visit `localhost:8006` to play the game.
 
 Note: You'll have to manually terminate the node-server process if you want to stop it as it runs as a background process.
+
+## Known Issues <a name = "issues"></a>
+- No response sent to engine server when on mobile.
 
 ## Authors <a name = "authors" />
 - [@lowlevelape](https://github.com/lowlevelape)
