@@ -59,6 +59,7 @@ Open your preferred browser, and visit `localhost:3000` to play the game.
 
 ## Known Issues <a name = "issues"></a>
 - No response sent to engine server when on mobile.
+- Engine takes too much time in searching.
 
 ## Authors <a name = "authors" />
 - [@lowlevelape](https://github.com/lowlevelape)
